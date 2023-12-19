@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package penjadwalan;
+
+message Jadwal {
+    int32 id = 1;
+    string instansi = 2;
+    string alamat = 3;
+    string tanggal = 4;
+    repeated string petugas_id = 5;
+    string penanggung_jawab = 6;
+    string kontak_penanggung_jawab = 7;
+    int32 status = 8;
+    string jenis_sampling_id = 9;
+}
+
+message JadwalListResponse {
+    repeated Jadwal data = 1;
+    string message = 2;
+}
+
+message JadwalListRequest {
+
+}
+
+message JadwalResponse {
+    Jadwal data = 1;
+    string message = 2;
+}
+
+message JadwalRequest {
+    int32 id = 1;
+}
+
+message CreateJadwalRequest {
+    string instansi = 1;
+    string alamat = 2;
+    string tanggal = 3;
+    repeated string petugas_id = 4;
+    string penanggung_jawab = 5;
+    string kontak_penanggung_jawab = 6;
+    int32 status = 7;
+    string jenis_sampling_id = 8;
+}
+
+message DeleteJadwalResponse {
+    string message = 1;
+}
+
+message DeleteJadwalRequest {
+    string id = 1;
+}
+
+service JadwalService {
+    rpc GetJadwalList(JadwalListRequest) returns (JadwalListResponse) {}
+    rpc GetJadwal(JadwalRequest) returns (JadwalResponse) {}
+    rpc CreateJadwal(CreateJadwalRequest) returns (JadwalResponse) {}
+    rpc DeleteJadwal(DeleteJadwalRequest) returns (DeleteJadwalResponse) {}
+}

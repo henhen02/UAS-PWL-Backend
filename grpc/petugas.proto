@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package petugas;
+
+message Petugas {
+    int32 id = 1;
+    string nip = 2;
+    string nama = 3;
+    string tgl_lahir = 4;
+    string kontak = 5;
+    string email = 6;
+    string alamat = 7;
+}
+
+message CreatePetugasRequest {
+    string nip = 1;
+    string nama = 2;
+    string tgl_lahir = 3;
+    string kontak = 4;
+    string email = 5;
+    string alamat = 6;
+}
+
+message PetugasListRequest {
+
+}
+
+message PetugasListResponse {
+    repeated Petugas data = 1;
+    string message = 2;
+}
+
+message PetugasRequest {
+    int32 id = 1;
+}
+
+message PetugasResponse {
+    Petugas data = 1;
+    string message = 2;
+}
+
+message UpdatePetugasRequest {
+    string nama = 2;
+    string tgl_lahir = 3;
+    string kontak = 4;
+    string email = 5;
+    string alamat = 6;
+}
+
+message DeletePetugasRequest {
+    int32 id = 1;
+}
+
+message DeletePetugasResponse {
+    string message = 1;
+}
+
+message LoginPetugasRequest {
+    string nip = 1;
+}
+
+message LoginPetugasResponse {
+    Petugas data = 1;
+    string message = 2;
+}
+
+service PetugasService {
+    rpc CreatePetugas(CreatePetugasRequest) returns (PetugasResponse);
+    rpc PetugasList(PetugasListRequest) returns (PetugasListResponse);
+    rpc Petugas(PetugasRequest) returns (PetugasResponse);
+    rpc UpdatePetugas(UpdatePetugasRequest) returns (PetugasResponse);
+    rpc DeletePetugas(DeletePetugasRequest) returns (DeletePetugasResponse);
+    rpc LoginPetugas(LoginPetugasRequest) returns (LoginPetugasResponse);
+}
